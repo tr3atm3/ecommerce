@@ -1,40 +1,49 @@
-import React from "react";
+import React, { useContext } from "react";
+import cartContext from "./context/cartContext";
 
-const cartElements = [
-  {
-    title: "Colors",
+// const cartElements = [
+//   {
+//     title: "Colors",
 
-    price: 100,
+//     price: 100,
 
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
 
-    quantity: 2,
-  },
+//     quantity: 2,
+//   },
 
-  {
-    title: "Black and white Colors",
+//   {
+//     title: "Black and white Colors",
 
-    price: 50,
+//     price: 50,
 
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
 
-    quantity: 3,
-  },
+//     quantity: 3,
+//   },
 
-  {
-    title: "Yellow and Black Colors",
+//   {
+//     title: "Yellow and Black Colors",
 
-    price: 70,
+//     price: 70,
 
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+//     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
 
-    quantity: 1,
-  },
-];
+//     quantity: 1,
+//   },
+// ];
 
 const Cart = () => {
+  const ctx = useContext(cartContext);
+  const cartElements = ctx?.cartItems || [];
   return (
-    <div className="fixed top-12 right-0 w-[30rem] bg-white p-4">
+    <div className="fixed top-12 right-0 w-[30rem] bg-white p-4 border border-black min-h-40">
+      <div
+        className="absolute top-2 right-2 cursor-pointer"
+        onClick={() => ctx.toggleCart()}
+      >
+        ❌
+      </div>
       <h2 className="text-2xl font-bold text-center my-4">Cart</h2>
       <div className="w-full flex justify-between">
         <div className="w-[30%]">
@@ -69,7 +78,7 @@ const Cart = () => {
               </div>
               <div className="flex w-[32%] justify-around items-center">
                 <p>{el.quantity}</p>
-                <button className="bg-red-600 px-4 py-1 rounded-lg text-white">
+                <button className="bg-red-600 px-4 py-1 rounded-lg text-white cursor-pointer">
                   remove
                 </button>
               </div>

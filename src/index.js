@@ -6,6 +6,7 @@ import Store from "./components/Store";
 import Home from "./components/Home";
 import About from "./components/About";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import CartProvider from "./components/context/CartProvider";
 
 const AppRouter = createBrowserRouter([
   {
@@ -29,4 +30,8 @@ const AppRouter = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={AppRouter} />);
+root.render(
+  <CartProvider>
+    <RouterProvider router={AppRouter} />
+  </CartProvider>
+);

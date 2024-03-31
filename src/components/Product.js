@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
+import cartContext from "./context/cartContext";
 
 const Product = ({ product }) => {
+  const ctx = useContext(cartContext);
+
   const { title, price, imageUrl } = product;
+  const handleAddCart = () => {
+    const item = {
+      title: title,
+      imageUrl: imageUrl,
+      price: price,
+    };
+
+    ctx.addItemToCart(item);
+  };
+
   return (
     <div className="m-8">
       <h2 className="font-bold text-2xl mb-4">{title}</h2>
       <img src={imageUrl} alt={title} />
       <div className="flex justify-between mt-8">
         <p className="font-italic text-xl">₹{price}</p>
-        <button className="bg-blue-500 rounded-lg px-4 py-1">
+        <button
+          className="bg-blue-500 rounded-lg px-4 py-1"
+          onClick={handleAddCart}
+        >
           Add To Cart
         </button>
       </div>
