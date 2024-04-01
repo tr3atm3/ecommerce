@@ -16,6 +16,9 @@ const Header = () => {
           <Link to="/about">
             <li className="mx-8">ABOUT</li>
           </Link>
+          <Link to="/contact">
+            <li>Contact Us</li>
+          </Link>
         </ul>
         <div className="relative border border-blue-400 px-4 py-1">
           <button onClick={() => ctx.toggleCart()}>Cart</button>
