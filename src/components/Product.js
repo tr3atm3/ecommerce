@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import cartContext from "./context/cartContext";
+import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
   const ctx = useContext(cartContext);
@@ -17,8 +18,10 @@ const Product = ({ product }) => {
 
   return (
     <div className="m-8">
-      <h2 className="font-bold text-2xl mb-4">{title}</h2>
-      <img src={imageUrl} alt={title} />
+      <Link to={`/product/${product.title}`}>
+        <h2 className="font-bold text-2xl mb-4">{title}</h2>
+        <img src={imageUrl} alt={title} />
+      </Link>
       <div className="flex justify-between mt-8">
         <p className="font-italic text-xl">₹{price}</p>
         <button

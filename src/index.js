@@ -8,6 +8,7 @@ import About from "./components/About";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CartProvider from "./components/context/CartProvider";
 import Contact from "./components/Contact";
+import ProductInfo from "./components/ProductInfo";
 
 const AppRouter = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const AppRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/product/:productId",
+        element: <ProductInfo />,
       },
     ],
   },

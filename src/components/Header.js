@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import cartContext from "./context/cartContext";
 const Header = () => {
   const ctx = useContext(cartContext);
+  const totalQnty = ctx.cartItems.reduce((acc, cur) => {
+    return cur.quantity + acc;
+  }, 0);
   return (
     <>
       <div className="bg-black text-white flex py-1 text-lg justify-between px-10 border-b-2 border-white items-center fixed top-0 left-0 w-full">
@@ -22,7 +25,7 @@ const Header = () => {
         </ul>
         <div className="relative border border-blue-400 px-4 py-1">
           <button onClick={() => ctx.toggleCart()}>Cart</button>
-          <p className="absolute top-[-12px] right-[-14px]">0</p>
+          <p className="absolute top-[-12px] right-[-14px]">{totalQnty}</p>
         </div>
       </div>
       <div className="bg-gray-500 text-center pt-20 pb-10">
