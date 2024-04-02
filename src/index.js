@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CartProvider from "./components/context/CartProvider";
 import Contact from "./components/Contact";
 import ProductInfo from "./components/ProductInfo";
+import Login from "./components/Login";
 
 const AppRouter = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const AppRouter = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "/product/:productId",

@@ -4,9 +4,16 @@ import cartContext from "./cartContext";
 const defaultValue = {
   cartItems: [],
   showCart: false,
+  loginTokenId: null,
 };
 
 const reducerFunc = (state, action) => {
+  if (action.type === "ADDTOKENID") {
+    return {
+      ...state,
+      loginTokenId: action.value,
+    };
+  }
   if (action.type === "TOGGLECART") {
     const toggleCart = !state.showCart;
     return {
@@ -64,11 +71,20 @@ const CartProvider = (props) => {
     });
   };
 
+  const addTokenId = (id) => {
+    dispatch({
+      type: "ADDTOKENID",
+      value: id,
+    });
+  };
+
   const cartValue = {
     cartItems: allState.cartItems,
     showCart: allState.showCart,
     toggleCart: toggleCart,
     addItemToCart: addItemToCart,
+    loginTokenId: allState.loginTokenId,
+    addTokenId: addTokenId,
   };
   return (
     <cartContext.Provider value={cartValue}>

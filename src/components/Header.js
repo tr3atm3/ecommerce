@@ -19,8 +19,11 @@ const Header = () => {
           <Link to="/about">
             <li className="mx-8">ABOUT</li>
           </Link>
+          <Link to="/login">
+            <li className="mx-8">LOGIN</li>
+          </Link>
           <Link to="/contact">
-            <li>Contact Us</li>
+            <li>CONTACT US</li>
           </Link>
         </ul>
         <div className="relative border border-blue-400 px-4 py-1">
