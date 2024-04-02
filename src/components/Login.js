@@ -1,10 +1,12 @@
 import React, { useContext, useRef } from "react";
 import cartContext from "./context/cartContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const ctx = useContext(cartContext);
+  const nav = useNavigate();
   console.log(ctx);
   const loginUser = async () => {
     try {
@@ -28,6 +30,7 @@ const Login = () => {
         throw new Error(data);
       }
       ctx.addTokenId(data.idToken);
+      nav("/");
     } catch (err) {
       console.log(err);
       alert(err);
