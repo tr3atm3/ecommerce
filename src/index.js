@@ -5,7 +5,14 @@ import App from "./App";
 import Store from "./components/Store";
 import Home from "./components/Home";
 import About from "./components/About";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  BrowserRouter,
+  createBrowserRouter,
+  Route,
+  Router,
+  RouterProvider,
+  Routes,
+} from "react-router-dom";
 import CartProvider from "./components/context/CartProvider";
 import Contact from "./components/Contact";
 import ProductInfo from "./components/ProductInfo";
@@ -47,6 +54,8 @@ const AppRouter = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <CartProvider>
-    <RouterProvider router={AppRouter} />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </CartProvider>
 );
