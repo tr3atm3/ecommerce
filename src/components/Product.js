@@ -23,7 +23,6 @@ const Product = ({ product }) => {
       }
     );
     const data = await response.json();
-    console.log(data);
   };
   const handleAddCart = () => {
     const item = {

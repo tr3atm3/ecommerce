@@ -30,7 +30,7 @@ const Contact = () => {
           ". Team will contact you Shortly."
       );
     } catch (err) {
-      console.log(err.message);
+      alert(err.message);
     }
   }
   const handleSubmit = (e) => {

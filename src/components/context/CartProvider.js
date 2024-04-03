@@ -29,9 +29,6 @@ const reducerFunc = (state, action) => {
     };
   }
   if (action.type === "ADD") {
-    console.log(
-      state.cartItems.filter((item) => item.title === action.value.title)
-    );
     const existingItemIndex = state.cartItems.indexOf(
       ...state.cartItems.filter((item) => item.title === action.value.title)
     );
@@ -71,7 +68,6 @@ const CartProvider = (props) => {
   };
 
   const addItemToCart = (item) => {
-    console.log(item);
     dispatch({
       type: "ADD",
       value: item,

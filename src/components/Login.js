@@ -7,7 +7,6 @@ const Login = () => {
   const passwordRef = useRef(null);
   const ctx = useContext(cartContext);
   const nav = useNavigate();
-  console.log(ctx);
 
   const getDataFromCrud = async () => {
     const useremail = emailRef.current.value
@@ -24,7 +23,7 @@ const Login = () => {
       }
       data.forEach((item) => ctx.addItemToCart(item));
     } catch (err) {
-      console.log(err);
+      alert(err.message);
     }
   };
   const loginUser = async () => {
@@ -52,7 +51,6 @@ const Login = () => {
       ctx.addUserEmail(data.email);
       nav("/");
     } catch (err) {
-      console.log(err);
       alert(err);
     }
   };

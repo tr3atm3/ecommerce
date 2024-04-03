@@ -3,14 +3,16 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 
-import { useContext } from "react";
+import { Suspense, lazy, useContext } from "react";
 import cartContext from "./components/context/cartContext";
-import Store from "./components/Store";
+// import Store from "./components/Store";
 import About from "./components/About";
 import Home from "./components/Home";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
 import ProductInfo from "./components/ProductInfo";
+
+const Store = lazy(() => import("./components/Store"));
 
 const PrivateRoutes = () => {
   let ctx = useContext(cartContext);
@@ -26,7 +28,15 @@ function App() {
 
       <Routes>
         <Route element={<PrivateRoutes />}>
-          <Route element={<Store />} path="/" exact />
+          <Route
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <Store />
+              </Suspense>
+            }
+            path="/"
+            exact
+          />
           <Route path="home" element={<Home />} />
         </Route>
 
