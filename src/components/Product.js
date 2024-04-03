@@ -6,13 +6,32 @@ const Product = ({ product }) => {
   const ctx = useContext(cartContext);
 
   const { title, price, imageUrl } = product;
+  const addDataToCrud = async () => {
+    const useremail = ctx.userEmail
+      .split("")
+      .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
+      .join("");
+
+    const response = await fetch(
+      `https://crudcrud.com/api/7cecf540f84b48fca1af4087bc9718a1/${useremail}`,
+      {
+        method: "POST",
+        body: JSON.stringify(product),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+  };
   const handleAddCart = () => {
     const item = {
       title: title,
       imageUrl: imageUrl,
       price: price,
     };
-
+    addDataToCrud();
     ctx.addItemToCart(item);
   };
 

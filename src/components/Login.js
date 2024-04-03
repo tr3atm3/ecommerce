@@ -8,6 +8,25 @@ const Login = () => {
   const ctx = useContext(cartContext);
   const nav = useNavigate();
   console.log(ctx);
+
+  const getDataFromCrud = async () => {
+    const useremail = emailRef.current.value
+      .split("")
+      .filter((x) => x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
+      .join("");
+    try {
+      const response = await fetch(
+        `https://crudcrud.com/api/7cecf540f84b48fca1af4087bc9718a1/${useremail}`
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error("Something Went Wrong");
+      }
+      data.forEach((item) => ctx.addItemToCart(item));
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const loginUser = async () => {
     try {
       const response = await fetch(
@@ -30,6 +49,7 @@ const Login = () => {
         throw new Error(data);
       }
       ctx.addTokenId(data.idToken);
+      ctx.addUserEmail(data.email);
       nav("/");
     } catch (err) {
       console.log(err);
@@ -39,6 +59,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginUser();
+    getDataFromCrud();
   };
   return (
     <div className="w-[50%] mx-auto my-12 bg-gray-300 p-8 h-[20rem]">

@@ -1,13 +1,20 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import cartContext from "./cartContext";
 
 const defaultValue = {
   cartItems: [],
   showCart: false,
   loginTokenId: null,
+  userEmail: "",
 };
 
 const reducerFunc = (state, action) => {
+  if (action.type === "USEREMAIL") {
+    return {
+      ...state,
+      userEmail: action.value,
+    };
+  }
   if (action.type === "ADDTOKENID") {
     return {
       ...state,
@@ -78,6 +85,13 @@ const CartProvider = (props) => {
     });
   };
 
+  const addUserEmail = (email) => {
+    dispatch({
+      type: "USEREMAIL",
+      value: email,
+    });
+  };
+
   const cartValue = {
     cartItems: allState.cartItems,
     showCart: allState.showCart,
@@ -85,6 +99,8 @@ const CartProvider = (props) => {
     addItemToCart: addItemToCart,
     loginTokenId: allState.loginTokenId,
     addTokenId: addTokenId,
+    userEmail: allState.userEmail,
+    addUserEmail: addUserEmail,
   };
   return (
     <cartContext.Provider value={cartValue}>
